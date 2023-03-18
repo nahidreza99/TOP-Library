@@ -19,9 +19,22 @@ header{
     background-color: rgb(228, 228, 228);
     display: flex;
     justify-content: space-between;
-    padding: 10px 200px;
+    align-items: center;
+    padding: 10px 250px;
 }
 
 .toolbar>div{
     display: flex;
+}
+
+.card {
+    background-color: aqua;
+    padding: 25px;
+}
+
+.container{
+    display: grid;
+    padding: 50px 250px;
+    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+    gap: 30px;
 }
