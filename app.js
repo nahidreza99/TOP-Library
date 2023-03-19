@@ -21,11 +21,13 @@ myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "
 myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
 myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
 
+const readIcon = '<i class="fa-solid fa-circle-check"></i>'
+
 function showBooks(){
     for (const b of myLibrary){
         const node = document.createElement("div");
         node.classList.add("card");
-        node.innerHTML += '<div class="title">'+b.title+'</div>';
+        node.innerHTML += '<p class="title">'+'<span class="read">'+readIcon+'</span>'+'<span>'+b.title+'</span>'+'</p>';
         node.innerHTML += '<div class="author">'+'Author: '+b.author+'</div>';
         node.innerHTML += '<div class="category">'+'Category: '+b.category+'</div>';
         node.innerHTML += '<div class="published">'+'Published: '+b.published+'</div>';
@@ -34,3 +36,17 @@ function showBooks(){
     }
 }
 showBooks();
+
+let readBtn = document.getElementsByClassName('read');
+
+for(let x=0;x<readBtn.length;x++){
+    readBtn[x].onclick = function(){
+        readBtn[x].classList.toggle('green');
+        if(readBtn[x].classList.contains('green')){
+            readBtn[x].style.setProperty('color', 'green');
+        }
+        else{
+            readBtn[x].style.setProperty('color', 'rgb(195, 198, 214)')
+        }
+    }
+}
