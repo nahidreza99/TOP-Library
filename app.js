@@ -23,6 +23,7 @@ myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "
 
 const readIcon = '<i class="fa-solid fa-circle-check"></i>'
 
+
 function showBooks(){
     for (const b of myLibrary){
         const node = document.createElement("div");
@@ -34,10 +35,24 @@ function showBooks(){
         node.innerHTML += '<div class="pages">'+'Pages: '+b.page+'</div>';
         document.getElementById("container").appendChild(node);
     }
+    const addBtn = document.createElement("div");
+    addBtn.classList.add("add");
+    addBtn.classList.add("card");
+    addBtn.id = 'add';
+    addBtn.innerHTML = '<i class="fa-solid fa-circle-plus"></i>'
+    document.getElementById("container").appendChild(addBtn);
+
 }
 showBooks();
 
+const newBook = document.getElementById('add');
+newBook.onclick = function(){
+    document.getElementById('curtain').classList.add("curt");
+}
+
 let readBtn = document.getElementsByClassName('read');
+
+
 
 for(let x=0;x<readBtn.length;x++){
     readBtn[x].onclick = function(){
