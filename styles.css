@@ -78,6 +78,11 @@ body{
     font-size: 4rem;
 }
 
+.behind{
+    position: absolute;
+    z-index: -10;
+}
+
 .curt{
     background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
@@ -86,8 +91,20 @@ body{
     left: 0;
     bottom: 0;
     z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #curtain{
     transition: all 0.3s;
 }
+
+.front{
+    z-index: 5;
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 25px;
+}
+
+

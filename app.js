@@ -44,11 +44,32 @@ function showBooks(){
 
 }
 showBooks();
+const curtain = document.getElementById('curtain');
 
+function newEntry(){
+    const form = document.getElementById('form');
+    form.innerHTML = '<label for="title">Title: <input id="title" type="text"></label><br><label for="author">Author: <input id="author" type="text"></label><br><label for="category">Category: <input id="category" type="text"></label><br><label for="published">Published: <input id="published" type="date"></label><br><label for="page">Pages: <input id="page" type="number"></label><br><input id="submit" type="submit">'
+}
+
+let entryDialog = false;
 const newBook = document.getElementById('add');
 newBook.onclick = function(){
-    document.getElementById('curtain').classList.add("curt");
+    curtain.classList.add("curt");
+    document.getElementById('form').classList.remove('behind');
+    document.getElementById('form').classList.add('front');
+    newEntry();
 }
+
+function removeEntryDialog(){
+    const entryChild = document.getElementById('entry');
+    curtain.removeChild(entryChild);
+}
+
+//const submit = document.getElementById('submit');
+    document.getElementById('form').addEventListener('submit', function (evt) {
+        console.log('working');
+        evt.preventDefault();
+    });
 
 let readBtn = document.getElementsByClassName('read');
 
