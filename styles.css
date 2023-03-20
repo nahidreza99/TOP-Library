@@ -107,4 +107,20 @@ body{
     border-radius: 25px;
 }
 
+.card .trash{
+    color: rgba(195, 198, 214, 0.5);
+    margin-left: 10px;
+    font-size: 1rem;
+    transition: color ease-in 200ms;
+}
 
+.card .controls{
+    display: flex;
+    margin-top: 15px;
+    color:rgba(195, 198, 214, 0.5);
+    justify-content: center;
+}
+
+.card .trash:hover{
+    color: red;
+}

@@ -14,15 +14,16 @@ function addBookToLibrary(title, author, category, published, page){
     return book;
 }
 
-let sample = new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "July 1 1996", "694");
+let sample = new Book("A Game Of Thrones 1", "George R. R. Martin", "Fiction", "July 1 1996", "694");
 myLibrary.push(sample);
-myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
-myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
-myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
-myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
-myLibrary.push(new Book("A Game Of Thrones", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
+myLibrary.push(new Book("A Game Of Thrones 2", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
+myLibrary.push(new Book("A Game Of Bones 3", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
+myLibrary.push(new Book("A Game Of Thrones 4", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
+myLibrary.push(new Book("A Game Of Thrones 5", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
+myLibrary.push(new Book("A Game Of Thrones 6", "George R. R. Martin", "Fiction", "July 1 1996", "694"));
 
 const readIcon = '<i class="fa-solid fa-circle-check"></i>'
+const rmvIcon = '<i class="fa-solid fa-trash-can"></i>'
 let newBook = document.getElementById('add');
 
 function renderAddButton(){
@@ -40,11 +41,12 @@ function showBooks(){
     for (const b of myLibrary){
         const node = document.createElement("div");
         node.classList.add("card");
-        node.innerHTML += '<p class="title">'+'<span class="read">'+readIcon+'</span>'+'<span>'+b.title+'</span>'+'</p>';
+        node.innerHTML += '<p class="title">'+b.title+'</p>';
         node.innerHTML += '<div class="author">'+'Author: '+b.author+'</div>';
         node.innerHTML += '<div class="category">'+'Category: '+b.category+'</div>';
         node.innerHTML += '<div class="published">'+'Published: '+b.published+'</div>';
         node.innerHTML += '<div class="pages">'+'Pages: '+b.page+'</div>';
+        node.innerHTML += '<p class="controls">'+'<span class="read">'+readIcon+'</span>'+' | '+'<span class="trash">'+rmvIcon+'</span>'
         document.getElementById("container").appendChild(node);
     }
 }
@@ -79,11 +81,12 @@ function renderNewBook(book){
     const container = document.getElementById("container");
     const node = document.createElement("div");
     node.classList.add("card");
-    node.innerHTML += '<p class="title">'+'<span class="read">'+readIcon+'</span>'+'<span>'+book.title+'</span>'+'</p>';
+    node.innerHTML += '<p class="title">'+book.title+'</p>';
     node.innerHTML += '<div class="author">'+'Author: '+book.author+'</div>';
     node.innerHTML += '<div class="category">'+'Category: '+book.category+'</div>';
     node.innerHTML += '<div class="published">'+'Published: '+book.published+'</div>';
     node.innerHTML += '<div class="pages">'+'Pages: '+book.page+'</div>';
+    node.innerHTML += '<p class="controls">'+'<span class="read">'+readIcon+'</span>'+' | '+'<span class="trash">'+rmvIcon+'</span>'
     container.insertBefore(node,container.lastChild);
 }
 
@@ -100,6 +103,9 @@ function getNewBook(){
 
 function reset(){
     readBtn = document.getElementsByClassName('read');
+    trashBtn = document.getElementsByClassName('trash');
+    enableTrashButton();
+    enableReadButton();
 }
 
 document.getElementById('form').addEventListener('submit', function (evt) {
@@ -107,11 +113,11 @@ document.getElementById('form').addEventListener('submit', function (evt) {
     getNewBook();
     removeEntryDialog();
     reset();
-    enableReadButton();
     evt.preventDefault();
 });
 
 let readBtn = document.getElementsByClassName('read');
+let trashBtn = document.getElementsByClassName('trash');
 
 function enableReadButton(){
     for(let x=0;x<readBtn.length;x++){
@@ -127,4 +133,19 @@ function enableReadButton(){
     }
 }
 
+function enableTrashButton(){
+    for(let x=0;x<trashBtn.length;x++){
+        trashBtn[x].onclick = function(){
+            myLibrary.splice(x,1);
+            removeItem(document.getElementsByClassName('card')[x]);
+        }
+    }
+}
+
+function removeItem(node){
+    document.getElementById('container').removeChild(node);
+    reset();
+}
+
+enableTrashButton();
 enableReadButton();
