@@ -97,7 +97,7 @@ body{
 }
 
 #curtain{
-    transition: all 0.3s;
+    transition: all ease-in-out .3s;
 }
 
 .front{
